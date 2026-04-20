@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+  
+ 
+  <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Portfolio | Jessa Hilardino</title>
 
@@ -90,6 +92,7 @@ nav a:hover {
   text-align: center;
   padding: 40px 20px;
   animation: fadeIn 1.5s ease;
+  position: relative; /* needed for sparkles */
 }
 
 .profile img {
@@ -105,13 +108,50 @@ nav a:hover {
   transform: scale(1.1);
 }
 
-/* NEW WELCOME STYLE */
-.profile h1 {
+/* ===== ADDED WELCOME ANIMATION ===== */
+#welcome-text {
   font-size: 28px;
   margin: 10px 0;
-  color: #a855f7;
-  text-shadow: 0 0 10px #e9d5ff;
+  background: linear-gradient(270deg, #a855f7, #ec4899, #f59e0b, #22c55e, #3b82f6, #a855f7);
+  background-size: 1200% 1200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbowMove 6s ease infinite, glowPulse 2s ease-in-out infinite;
+  border-right: 3px solid #a855f7;
+  white-space: nowrap;
+  overflow: hidden;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+@keyframes rainbowMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes glowPulse {
+  0% { text-shadow: 0 0 5px #a855f7; }
+  50% { text-shadow: 0 0 20px #ec4899; }
+  100% { text-shadow: 0 0 5px #a855f7; }
+}
+
+/* SPARKLES */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: #a855f7;
+  border-radius: 50%;
+  animation: sparkleAnim 2s infinite;
+}
+
+@keyframes sparkleAnim {
+  0% {opacity:1; transform:scale(1);}
+  100% {opacity:0; transform:scale(2);}
+}
+/* ===== END ADD ===== */
 
 /* SKILLS */
 .skill-list {
@@ -132,7 +172,6 @@ nav a:hover {
 .skill:hover {
   background: #a855f7;
   color: white;
-  transform: scale(1.1);
 }
 
 /* PHOTOS */
@@ -149,13 +188,6 @@ nav a:hover {
   height: 120px;
   border-radius: 12px;
   object-fit: cover;
-  transition: 0.4s;
-}
-
-.photo-gallery img:hover,
-.output-gallery img:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 15px #c084fc;
 }
 
 /* CERTIFICATES */
@@ -171,11 +203,6 @@ nav a:hover {
   height: 180px;
   margin: 10px;
   border-radius: 12px;
-  transition: 0.3s;
-}
-
-.tutorials iframe:hover {
-  transform: scale(1.05);
 }
 
 /* BUTTON */
@@ -186,12 +213,6 @@ button {
   padding: 8px 15px;
   border-radius: 8px;
   cursor: pointer;
-  transition: 0.3s;
-}
-
-button:hover {
-  transform: scale(1.1);
-  box-shadow: 0 0 10px #c084fc;
 }
 
 /* INPUT */
@@ -200,13 +221,6 @@ input, textarea {
   border-radius: 8px;
   border: 1px solid #c4b5fd;
   width: 100%;
-  box-sizing: border-box;
-}
-
-input:focus, textarea:focus {
-  outline: none;
-  border-color: #a855f7;
-  box-shadow: 0 0 8px #c084fc;
 }
 
 form {
@@ -222,10 +236,9 @@ footer {
   background: rgba(255,255,255,0.7);
 }
 
-/* FADE ANIMATION */
 @keyframes fadeIn {
-  from {opacity: 0; transform: translateY(20px);}
-  to {opacity: 1; transform: translateY(0);}
+  from {opacity: 0;}
+  to {opacity: 1;}
 }
 
 </style>
@@ -252,7 +265,8 @@ footer {
   <img src="Isang.jpg">
 
   <!-- ADDED -->
-  <h1>Welcome to My Portfolio</h1>
+  <h1 id="welcome-text"></h1>
+  <div id="sparkles"></div>
 
   <h2>Jessa Lopez Hilardino</h2>
   <p>
@@ -283,7 +297,7 @@ footer {
 <section class="skills" id="resume">
   <h3>My Resume</h3>
   <div class="output-card">
-    <button onclick="window.open('Resume.pdf', '_blank')">View Resume</button>
+    <button onclick="window.open('Resume.pdf','_blank')">View Resume</button>
     <br><br>
     <a href="Resume.pdf" download>
       <button>Download Resume</button>
@@ -345,11 +359,181 @@ footer {
 </footer>
 
 <script>
+
+/* SOUND */
+const sound = new Audio("https://www.soundjay.com/mechanical/keyboard-1.mp3");
+
+/* TYPING */
+const text = "Welcome to My Portfolio 💜";
+let i = 0, del = false;
+
+function type(){
+  const el = document.getElementById("welcome-text");
+
+  sound.currentTime = 0;
+  sound.play();
+
+  if(!del){
+    el.innerHTML = text.substring(0,i++);
+    if(i>text.length){del=true;setTimeout(type,1500);return;}
+  }else{
+    el.innerHTML = text.substring(0,i--);
+    if(i<0)del=false;
+  }
+
+  setTimeout(type,del?40:80);
+}
+
+/* SPARKLES */
+function sparkles(){
+  const c=document.getElementById("sparkles");
+  for(let j=0;j<20;j++){
+    let s=document.createElement("div");
+    s.className="sparkle";
+    s.style.top=Math.random()*100+"%";
+    s.style.left=Math.random()*100+"%";
+    c.appendChild(s);
+  }
+}
+
+window.onload=()=>{type();sparkles();};
+
 function sendMessage(event) {
   event.preventDefault();
   alert("Message sent successfully 💜");
 }
-</script>
 
-</body>
+</script>
+<style>
+
+/* GOOGLE FONT */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+/* BODY */
+body {
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  color: #2d1b3d;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #c084fc, #a855f7, #7c3aed);
+}
+
+/* GLASSMORPHISM BASE */
+header, .skills, .output-card, .contact, footer {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+/* FLOATING BG */
+body::before {
+  content: "";
+  position: fixed;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,255,255,0.1) 20%, transparent 20%) repeat;
+  background-size: 120px 120px;
+  animation: moveBg 25s linear infinite;
+  z-index: -1;
+}
+
+@keyframes moveBg {
+  from { transform: translate(0,0); }
+  to { transform: translate(-200px,-200px); }
+}
+
+h1, h2, h3 {
+  color: white;
+}
+
+/* HEADER */
+header {
+  padding: 15px;
+  text-align: center;
+  position: sticky;
+  top: 0;
+}
+
+nav a {
+  color: white;
+  margin: 0 12px;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+/* CONTAINER */
+.container {
+  width: 90%;
+  max-width: 900px;
+  margin: auto;
+}
+
+/* PROFILE */
+.profile {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.profile img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+/* RAINBOW TEXT */
+#welcome-text {
+  font-size: 30px;
+  background: linear-gradient(270deg, red, orange, yellow, green, blue, violet);
+  background-size: 1000%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: rainbow 5s infinite;
+  border-right: 3px solid white;
+  display: inline-block;
+}
+
+@keyframes rainbow {
+  0% {background-position:0%}
+  100% {background-position:100%}
+}
+
+/* SPARKLES */
+.sparkle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  border-radius: 50%;
+  animation: sparkleAnim 2s infinite;
+}
+
+@keyframes sparkleAnim {
+  0% {opacity:1; transform: scale(1);}
+  100% {opacity:0; transform: scale(2);}
+}
+
+/* CARDS */
+.skills, .output-card, .contact {
+  border-radius: 18px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+/* BUTTON */
+button {
+  background: linear-gradient(45deg, #fff, #ddd);
+  color: black;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 10px;
+}
+
+</style>
 </html>
