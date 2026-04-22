@@ -3,691 +3,259 @@
 <head>    
 <meta charset="UTF-8">  
 <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>My Portfolio | Jessa Hilardino</title>  <style>  
-  
-/* GOOGLE FONT */  
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');  
-  
-/* BACKGROUND ANIMATION */  
+<title>My Portfolio | Jessa Hilardino</title>  
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+<style>  
+:root {
+  --primary: #a855f7;
+  --secondary: #ec4899;
+  --live-color: #3b82f6; 
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --text-main: #ffffff;
+}
+
 body {  
-  margin: 0;  
-  font-family: 'Poppins', sans-serif;  
-  color: #2d1b3d;  
-  overflow-x: hidden;  
-  background: linear-gradient(135deg, #f3e8ff, #e9d5ff, #ddd6fe);  
+  margin: 0; font-family: 'Poppins', sans-serif; color: var(--text-main);  
+  overflow-x: hidden; background: linear-gradient(135deg, #1f2937, #111827, #1f2937);  
+  background-attachment: fixed; min-height: 100vh;
 }  
-  
-/* FLOATING BUBBLES */  
+
 body::before {  
-  content: "";  
-  position: fixed;  
-  width: 200%;  
-  height: 200%;  
-  background: radial-gradient(circle, rgba(168,85,247,0.15) 20%, transparent 20%) repeat;  
-  background-size: 100px 100px;  
-  animation: moveBg 20s linear infinite;  
-  z-index: -1;  
+  content: ""; position: fixed; width: 200%; height: 200%;  
+  background: radial-gradient(circle, rgba(168,85,247,0.05) 10%, transparent 20%) repeat;  
+  background-size: 80px 80px; animation: moveBg 30s linear infinite; z-index: -1;  
 }  
   
-@keyframes moveBg {  
-  from { transform: translate(0,0); }  
-  to { transform: translate(-200px,-200px); }  
-}  
-  
-h1, h2, h3 {  
-  color: #7c3aed;  
-}  
-  
-/* HEADER */  
+@keyframes moveBg { from { transform: translate(0,0); } to { transform: translate(-200px,-200px); } }  
+
 header {  
-  background: rgba(255,255,255,0.7);  
-  padding: 15px;  
-  text-align: center;  
-  position: sticky;  
-  top: 0;  
-  backdrop-filter: blur(10px);  
+  background: rgba(17, 24, 39, 0.7); padding: 15px 5px; text-align: center;  
+  position: sticky; top: 0; backdrop-filter: blur(15px); z-index: 1000; border-bottom: 1px solid var(--glass-border);
 }  
   
-nav a {  
-  color: #5b21b6;  
-  margin: 0 12px;  
-  text-decoration: none;  
-  font-weight: 600;  
-  transition: 0.3s;  
+/* Nav links tightly packed as requested */
+nav a { color: #fff; margin: 0 5px; text-decoration: none; font-weight: 600; font-size: 11px; }
+nav a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }  
+  
+.container { width: 90%; max-width: 1000px; margin: auto; padding-bottom: 80px; }  
+  
+section {  
+  background: var(--glass); backdrop-filter: blur(12px); border: 1px solid var(--glass-border);
+  border-radius: 20px; padding: 25px; margin: 35px 0; transition: 0.4s;  
 }  
   
-nav a:hover {  
-  color: #a855f7;  
-  text-shadow: 0 0 10px #c084fc;  
-}  
+section:hover { transform: translateY(-5px); border-color: var(--primary); }  
   
-/* CONTAINER */  
-.container {  
-  width: 90%;  
-  max-width: 900px;  
-  margin: auto;  
-}  
+.profile { text-align: center; padding: 50px 20px; position: relative; }  
+.profile img { width: 140px; height: 140px; border-radius: 50%; border: 3px solid var(--primary); object-fit: cover; box-shadow: 0 0 20px var(--primary); margin-bottom: 15px; }
+
+.sparkle { position: absolute; width: 6px; height: 6px; background: white; border-radius: 50%; animation: sparkleAnim 2s infinite; pointer-events: none; }
+@keyframes sparkleAnim { 0% {opacity:1; transform: scale(1);} 100% {opacity:0; transform: scale(2);} }
   
-/* CARDS */  
-.skills, .output-card, .contact {  
-  background: rgba(255,255,255,0.85);  
-  border-radius: 18px;  
-  padding: 20px;  
-  margin-bottom: 30px;  
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);  
-  transition: 0.4s;  
+/* Reduced font size for Welcome Text */
+#welcome-text { font-size: 20px; font-weight: 700; background: linear-gradient(270deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff); background-size: 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: rainbowMove 8s linear infinite; border-right: 3px solid #fff; width: fit-content; margin: 10px auto; white-space: nowrap; overflow: hidden; min-height: 35px; }
+@keyframes rainbowMove { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }  
+
+.skill-list { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }  
+.skill { 
+  background: rgba(168, 85, 247, 0.1); border: 1px solid var(--primary); padding: 8px 18px; border-radius: 50px; 
+  font-weight: 500; transition: 0.3s; text-decoration: none; color: white; display: inline-block;
 }  
+.skill:hover { background: var(--primary); box-shadow: 0 0 15px var(--primary); transform: scale(1.1); color: white; }
   
-.skills:hover, .output-card:hover {  
-  transform: translateY(-5px) scale(1.01);  
-  box-shadow: 0 10px 25px rgba(168,85,247,0.3);  
-}  
+.photo-gallery, .output-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 15px; }  
+.photo-gallery img, .output-gallery img { width: 100%; height: 180px; border-radius: 15px; object-fit: cover; }  
   
-/* PROFILE */  
-.profile {  
-  text-align: center;  
-  padding: 40px 20px;  
-  animation: fadeIn 1.5s ease;  
-  position: relative; /* needed for sparkles */  
-}  
+.grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+.output-card { background: rgba(255, 255, 255, 0.02); border-radius: 15px; padding: 15px; text-align: center; border: 1px solid var(--glass-border); }  
+.output-card img { width: 100%; border-radius: 10px; margin-bottom: 10px; }  
   
-.profile img {  
-  width: 120px;  
-  height: 120px;  
-  border-radius: 50%;  
-  border: 2px solid #a855f7;  
-  object-fit: cover;  
-  transition: 0.4s;  
-}  
+.tutorials-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
+.tutorials-grid iframe { width: 100%; max-width: 300px; height: 180px; border-radius: 12px; border: none; }  
   
-.profile img:hover {  
-  transform: scale(1.1);  
-}  
-  
-/* ===== ADDED WELCOME ANIMATION ===== */  
-#welcome-text {  
-  font-size: 28px;  
-  margin: 10px 0;  
-  background: linear-gradient(270deg, #a855f7, #ec4899, #f59e0b, #22c55e, #3b82f6, #a855f7);  
-  background-size: 1200% 1200%;  
-  -webkit-background-clip: text;  
-  -webkit-text-fill-color: transparent;  
-  animation: rainbowMove 6s ease infinite, glowPulse 2s ease-in-out infinite;  
-  border-right: 3px solid #a855f7;  
-  white-space: nowrap;  
-  overflow: hidden;  
-  width: fit-content;  
-  margin-left: auto;  
-  margin-right: auto;  
-}  
-  
-@keyframes rainbowMove {  
-  0% { background-position: 0% 50%; }  
-  50% { background-position: 100% 50%; }  
-  100% { background-position: 0% 50%; }  
-}  
-  
-@keyframes glowPulse {  
-  0% { text-shadow: 0 0 5px #a855f7; }  
-  50% { text-shadow: 0 0 20px #ec4899; }  
-  100% { text-shadow: 0 0 5px #a855f7; }  
-}  
-  
-/* SPARKLES */  
-.sparkle {  
-  position: absolute;  
-  width: 6px;  
-  height: 6px;  
-  background: #a855f7;  
-  border-radius: 50%;  
-  animation: sparkleAnim 2s infinite;  
-}  
-  
-@keyframes sparkleAnim {  
-  0% {opacity:1; transform:scale(1);}  
-  100% {opacity:0; transform:scale(2);}  
-}  
-/* ===== END ADD ===== */  
-  
-/* SKILLS */  
-.skill-list {  
-  display: flex;  
-  flex-wrap: wrap;  
-  justify-content: center;  
-  gap: 10px;  
-}  
-  
-.skill {  
-  background: #ede9fe;  
-  border: 1px solid #c4b5fd;  
-  padding: 8px 15px;  
-  border-radius: 10px;  
-  transition: 0.3s;  
-}  
-  
-.skill:hover {  
-  background: #a855f7;  
-  color: white;  
-}  
-  
-/* PHOTOS */  
-.photo-gallery, .output-gallery {  
-  display: flex;  
-  flex-wrap: wrap;  
-  justify-content: center;  
-  gap: 15px;  
-}  
-  
-.photo-gallery img,  
-.output-gallery img {  
-  width: 180px;  
-  height: 120px;  
-  border-radius: 12px;  
-  object-fit: cover;  
-}  
-  
-/* CERTIFICATES */  
-.output-card img {  
-  width: 100%;  
-  border-radius: 10px;  
-  margin-bottom: 10px;  
-}  
-  
-/* VIDEOS */  
-.tutorials iframe {  
-  width: 300px;  
-  height: 180px;  
-  margin: 10px;  
-  border-radius: 12px;  
-}  
-  
-/* BUTTON */  
-button {  
-  background: linear-gradient(45deg, #a855f7, #7c3aed);  
-  color: white;  
-  border: none;  
-  padding: 8px 15px;  
-  border-radius: 8px;  
-  cursor: pointer;  
-}  
-  
-/* INPUT */  
-input, textarea {  
-  padding: 10px;  
-  border-radius: 8px;  
-  border: 1px solid #c4b5fd;  
-  width: 100%;  
-}  
-  
-form {  
-  display: flex;  
-  flex-direction: column;  
-  gap: 10px;  
-}  
-  
-/* FOOTER */  
-footer {  
-  text-align: center;  
-  padding: 10px;  
-  background: rgba(255,255,255,0.7);  
-}  
-  
-@keyframes fadeIn {  
-  from {opacity: 0;}  
-  to {opacity: 1;}  
-}  
-  
-</style>  </head>  <body>  <header>  
+.btn { background: linear-gradient(45deg, var(--primary), var(--secondary)); color: white; border: none; padding: 10px 20px; border-radius: 10px; cursor: pointer; font-weight: 600; text-decoration: none; display: inline-block; transition: 0.3s; }  
+.btn:hover { opacity: 0.9; transform: scale(1.05); }
+
+.social-links { display: flex; justify-content: center; gap: 20px; margin-top: 20px; font-size: 24px; }
+.social-links a { color: white; text-decoration: none; transition: 0.3s; }
+.social-links a:hover { color: var(--primary); transform: translateY(-3px); }
+
+input, textarea { padding: 12px; border-radius: 10px; border: 1px solid var(--glass-border); width: 100%; background: rgba(255,255,255,0.05); color: white; margin-bottom: 10px; box-sizing: border-box; }  
+
+/* CHATS - Icons positioned to the side as requested */
+.floating-chats { position: fixed; bottom: 20px; right: 10px; display: flex; flex-direction: column; gap: 10px; z-index: 2000; }
+.chat-icon { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.5); font-size: 24px; transition: 0.3s; }
+#ai-btn { background: var(--primary); color: white; }
+#live-btn { background: var(--live-color); color: white; }
+
+.chat-box { position: fixed; bottom: 85px; right: 10px; width: 280px; background: white; color: #333; border-radius: 20px; display: none; flex-direction: column; box-shadow: 0 10px 30px rgba(0,0,0,0.5); overflow: hidden; z-index: 2000; }
+.chat-head { padding: 15px; color: white; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+.chat-body { height: 250px; overflow-y: auto; padding: 15px; font-size: 13px; background: #f9f9f9; display: flex; flex-direction: column; gap: 8px; }
+.chat-foot { border-top: 1px solid #eee; display: flex; background: #fff; }
+.chat-foot input { border: none; padding: 15px; flex: 1; color: #333; background: #fff; margin: 0; border-radius: 0; }
+.chat-foot button { background: none; border: none; padding: 0 15px; color: var(--primary); cursor: pointer; font-weight: bold; }
+
+.bot-msg { align-self: flex-start; background: #eee; padding: 8px 12px; border-radius: 12px 12px 12px 0; max-width: 80%; }
+.user-msg { align-self: flex-end; background: var(--primary); color: white; padding: 8px 12px; border-radius: 12px 12px 0 12px; max-width: 80%; }
+
+footer { text-align: center; padding: 25px; background: rgba(17, 24, 39, 0.7); border-top: 1px solid var(--glass-border); }
+</style>  
+</head>  
+
+<body>  
+
+<header>  
   <nav>  
-    <a href="#about">Home</a>  
-    <a href="#skills">Skills</a>  
-    <a href="#photos">Photos</a>  
-    <a href="#resume">Resume</a>  
-    <a href="#certificates">Certificates</a>  
-    <a href="#outputs">Outputs</a>  
-    <a href="#tutorials">Tutorials</a>  
-    <a href="#contact">Contact</a>  
+    <a href="#about">Home</a><a href="#skills">Skills</a><a href="#photos">Photos</a><a href="#certificates">Certificates</a><a href="#outputs">Outputs</a><a href="#tutorials">Tutorials</a><a href="#contact">Contact</a>   
   </nav>  
-</header>  <div class="container">  <section class="profile" id="about">  
-  <img src="Isang.jpg">    <!-- ADDED -->    <h1 id="welcome-text"></h1>  
-  <div id="sparkles"></div>    <h2>Jessa Lopez Hilardino</h2>  
-  <p>  
-    👋 Hello! I'm Jessa Hilardino, a Bachelor of Science in Information Technology (BSIT) student who is passionate about technology, creativity, and innovation. I enjoy exploring digital design and UI/UX development using HTML, CSS, Figma, and Canva. My goal is to grow as a developer and create meaningful and user-friendly systems.  
-  </p>  
-</section>  <section class="skills" id="skills">  
-  <h3>My Skills</h3>  
-  <div class="skill-list">  
-    <div class="skill">HTML</div>  
-    <div class="skill">CSS</div>  
-    <div class="skill">Figma</div>  
-    <div class="skill">Canva</div>  
-    <div class="skill">UI/UX</div>  
-  </div>  
-</section>  <section class="photos" id="photos">  
-  <h3>My Photos</h3>  
-  <div class="photo-gallery">  
-    <img src="Jess.jpg">  
-    <img src="Meee.jpg">  
-    <img src="Miss jezz.jpg">  
-  </div>  
-</section>  <section class="skills" id="resume">  
-  <h3>My Resume</h3>  
-  <div class="output-card">  
-    <button onclick="window.open('Resume.pdf','_blank')">View Resume</button>  
-    <br><br>  
-    <a href="Resume.pdf" download>  
-      <button>Download Resume</button>  
-    </a>  
-  </div>  
-</section>  <section class="skills" id="certificates">  
-  <h3>My Certificates</h3>  
-  <div class="output-card">  
-    <img src="Js.png">  
-    <h4>HTML & CSS Training</h4>  
-  </div>  
-  <div class="output-card">  
-    <img src="Ps.png">  
-  </div>  
-  <div class="output-card">  
-    <img src="Ln.png">  
-  </div>  
-  <!-- NEW PROJECT LINKS -->
-<div class="output-card">
-  <div class="output-card">
-  <div class="output-card">
-  <div class="output-card">
-  <div class="output-card">
-  <!-- CANVA -->
-<a href="https://www.canva.com/your-canva-link" target="_blank">
-  <div class="output-card">
-    <h4>🎨 My Canva Portfolio</h4>
-    <p>Click to view my Canva designs</p>
-  </div>
-</a>
+</header>  
 
-<!-- ECOMMERCE -->
-<a href="https://www.figma.com/your-ecommerce-link" target="_blank">
-  <div class="output-card">
-    <h4>🛒 Figma Ecommerce Design</h4>
-    <p>Click to view my ecommerce project</p>
-  </div>
-</a>
+<div class="container">  
 
-<!-- PERSONAL WEBSITE -->
-<a href="https://www.figma.com/your-website-link" target="_blank">
-  <div class="output-card">
-    <h4>🌐 Personal Website (Figma)</h4>
-    <p>Click to view my website design</p>
-  </div>
-</a>
-</section>  <section class="skills" id="outputs">  
-  <h3>My Outputs</h3>  
-  <div class="output-gallery">  
-    <img src="lala.jpg">  
-    <img src="tshirt.jpg">  
-    <img src="bamz.jpg">  
-  </div>  
-</section>  <section class="tutorials" id="tutorials">  
-  <h3>YouTube Tutorials</h3>  
-  <iframe src="https://www.youtube.com/embed/k7ELO356Npo"></iframe>  
-  <iframe src="https://www.youtube.com/embed/GQK9VQADYCU"></iframe>  
-  <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ"></iframe>  
-</section>  <section class="contact" id="contact">  
-  <h3>Contact Me</h3>  
-  <p>  
-    <a href="https://facebook.com">Facebook</a> |  
-    <a href="https://instagram.com">Instagram</a> |  
-    <a href="https://github.com">GitHub</a>  
-  </p>    <form onsubmit="sendMessage(event)">  
-    <input type="text" placeholder="First Name" required>  
-    <input type="text" placeholder="Last Name" required>  
-    <input type="email" placeholder="Email" required>  
-    <textarea rows="4" placeholder="Message" required></textarea>  
-    <button type="submit">Send</button>  
-  </form>  
-</section>  </div>  <footer>  
-  © 2025 My Portfolio | 💜 Jessa Hilardino  
-</footer>  <script>  
-  
-/* SOUND */  
-const sound = new Audio("https://www.soundjay.com/mechanical/keyboard-1.mp3");  
-  
-/* TYPING */  
+  <section class="profile" id="about">  
+    <div id="sparkles-container"></div>
+    <img src="love.jpg">  
+    <h1 id="welcome-text"></h1>  
+    <h2>Jessa Lopez Hilardino</h2>  
+    <p>👋 Hello! I'm Jessa Hilardino, a <b>BSIT</b> student. I enjoy exploring digital design and UI/UX development.</p>  
+    <div class="social-links">
+        <a href="https://facebook.com" target="_blank">FB</a>
+        <a href="https://instagram.com" target="_blank">IG</a>
+        <a href="https://github.com" target="_blank">GH</a>
+    </div>
+  </section>  
+
+  <section id="skills">  
+    <h3>My Skills</h3>  
+    <div class="skill-list">  
+      <a href="https://developer.mozilla.org/en-US/docs/Web/HTML" target="_blank" class="skill">HTML</a>
+      <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" class="skill">CSS</a>
+      <a href="https://www.figma.com" target="_blank" class="skill">Figma</a>
+      <a href="https://www.canva.com" target="_blank" class="skill">Canva</a>
+      <a href="https://www.interaction-design.org/literature/topics/ui-design" target="_blank" class="skill">UI/UX</a>  
+    </div>  
+  </section>  
+
+  <section id="photos">  
+    <h3>My Photos</h3>  
+    <div class="photo-gallery">  
+      <img src="meee.jpg"><img src="Uuuuu.jpg"><img src="green.jpg">  
+    </div>
+  </section>  
+
+  <section id="resume">  
+    <h3>My Resume</h3>  
+    <div style="text-align: center;">  
+      <a href="My.jpg" target="_blank" class="btn">View Resume</a>  
+    </div>  
+  </section>  
+
+  <section id="certificates">  
+    <h3>My Certificates</h3>  
+    <div class="grid-layout">
+      <div class="output-card"><img src="Js.png"><h4>HTML & CSS Training</h4></div>  
+      <div class="output-card"><img src="Ps.png"><h4>UI/UX Design</h4></div>  
+      <div class="output-card"><img src="Ln.png"><h4>IT Support Cert</h4></div>  
+    </div>
+  </section>  
+
+  <section id="outputs">  
+    <h3>My Outputs</h3>  
+    <div class="output-gallery">  
+      <img src="lala.jpg"><img src="tshirt.jpg"><img src="bamz.jpg">  
+    </div>  
+  </section>  
+
+  <section id="tutorials">  
+    <h3>YouTube Tutorials</h3>  
+    <div class="tutorials-grid">
+      <iframe src="https://www.youtube.com/embed/9xmt7Kd-zTg"></iframe>  
+      <iframe src="https://www.youtube.com/embed/HZuk6Wkx_Eg"></iframe> 
+    </div>
+  </section>  
+
+  <section id="contact">  
+    <h3>Contact Me</h3>  
+    <form action="https://formspree.io/f/jessahilardino446@gmail.com" method="POST">  
+      <input type="text" name="name" placeholder="Name" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" rows="4" placeholder="Message" required></textarea>  
+      <button type="submit" class="btn" style="width: 100%;">Send Message 🚀</button>  
+    </form>  
+  </section>  
+</div>  
+
+<footer> © 2026 | 💜 Jessa Hilardino </footer>  
+
+<div class="floating-chats">
+    <div id="ai-btn" class="chat-icon" onclick="toggleChat('ai-box')">🤖</div>
+    <div id="live-btn" class="chat-icon" onclick="toggleChat('live-box')">💬</div>
+</div>
+
+<div id="ai-box" class="chat-box">
+  <div class="chat-head" style="background: var(--primary);">Jessa AI Bot 🤖 <span onclick="toggleChat('ai-box')" style="cursor:pointer">×</span></div>
+  <div class="chat-body" id="ai-body"><div class="bot-msg">Hi! Ask me about Jessa's skills! 💜</div></div>
+  <div class="chat-foot"><input id="ai-in" placeholder="Ask me..." onkeypress="if(event.key==='Enter') aiChat()"><button onclick="aiChat()">Go</button></div>
+</div>
+
+<div id="live-box" class="chat-box">
+  <div class="chat-head" style="background: var(--live-color);">Live Chat 🗨️ <span onclick="toggleChat('live-box')" style="cursor:pointer">×</span></div>
+  <div class="chat-body" id="live-body"><div class="bot-msg">Leave a message for Jessa!</div></div>
+  <form action="https://formspree.io/f/jessahilardino446@gmail.com" method="POST" class="chat-foot">
+    <input name="chat_message" placeholder="Type here..." required>
+    <button type="submit" style="color:var(--live-color)">Send</button>
+  </form>
+</div>
+
+<script>  
 const text = "Welcome to My Portfolio 💜";  
 let i = 0, del = false;  
-  
+
 function type(){  
   const el = document.getElementById("welcome-text");  
-  
-  sound.currentTime = 0;  
-  sound.play();  
-  
   if(!del){  
-    el.innerHTML = text.substring(0,i++);  
-    if(i>text.length){del=true;setTimeout(type,1500);return;}  
-  }else{  
-    el.innerHTML = text.substring(0,i--);  
-    if(i<0)del=false;  
+    el.innerHTML = text.substring(0, i++);  
+    if(i > text.length){ del=true; setTimeout(type, 2000); return; }  
+  } else {  
+    el.innerHTML = text.substring(0, i--);  
+    if(i < 0) del=false;  
   }  
-  
-  setTimeout(type,del?40:80);  
+  setTimeout(type, del ? 50 : 100);  
 }  
-  
-/* SPARKLES */  
-function sparkles(){  
-  const c=document.getElementById("sparkles");  
-  for(let j=0;j<20;j++){  
-    let s=document.createElement("div");  
-    s.className="sparkle";  
-    s.style.top=Math.random()*100+"%";  
-    s.style.left=Math.random()*100+"%";  
-    c.appendChild(s);  
-  }  
-}  
-  
-window.onload=()=>{type();sparkles();};  
-  
-function sendMessage(event) {  
-  event.preventDefault();  
-  alert("Message sent successfully 💜");  
-}  
-  
-</script>  <style>  
-  
-/* GOOGLE FONT */  
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');  
-  
-/* BODY */  
-body {  
-  margin: 0;  
-  font-family: 'Poppins', sans-serif;  
-  color: #2d1b3d;  
-  overflow-x: hidden;  
-  background: linear-gradient(135deg, #c084fc, #a855f7, #7c3aed);  
-}  
-  
-/* GLASSMORPHISM BASE */  
-header, .skills, .output-card, .contact, footer {  
-  background: rgba(255, 255, 255, 0.15);  
-  backdrop-filter: blur(15px);  
-  border: 1px solid rgba(255,255,255,0.2);  
-}  
-  
-/* FLOATING BG */  
-body::before {  
-  content: "";  
-  position: fixed;  
-  width: 200%;  
-  height: 200%;  
-  background: radial-gradient(circle, rgba(255,255,255,0.1) 20%, transparent 20%) repeat;  
-  background-size: 120px 120px;  
-  animation: moveBg 25s linear infinite;  
-  z-index: -1;  
-}  
-  
-@keyframes moveBg {  
-  from { transform: translate(0,0); }  
-  to { transform: translate(-200px,-200px); }  
-}  
-  
-h1, h2, h3 {  
-  color: white;  
-}  
-  
-/* HEADER */  
-header {  
-  padding: 15px;  
-  text-align: center;  
-  position: sticky;  
-  top: 0;  
-}  
-  
-nav a {  
-  color: white;  
-  margin: 0 12px;  
-  text-decoration: none;  
-  font-weight: 600;  
-}  
-  
-/* CONTAINER */  
-.container {  
-  width: 90%;  
-  max-width: 900px;  
-  margin: auto;  
-}  
-  
-/* PROFILE */  
-.profile {  
-  text-align: center;  
-  padding: 40px 20px;  
-}  
-  
-.profile img {  
-  width: 120px;  
-  height: 120px;  
-  border-radius: 50%;  
-  border: 2px solid white;  
-}  
-  
-/* RAINBOW TEXT */  
-#welcome-text {  
-  font-size: 30px;  
-  background: linear-gradient(270deg, red, orange, yellow, green, blue, violet);  
-  background-size: 1000%;  
-  -webkit-background-clip: text;  
-  -webkit-text-fill-color: transparent;  
-  animation: rainbow 5s infinite;  
-  border-right: 3px solid white;  
-  display: inline-block;  
-}  
-  
-@keyframes rainbow {  
-  0% {background-position:0%}  
-  100% {background-position:100%}  
-}  
-  
-/* SPARKLES */  
-.sparkle {  
-  position: absolute;  
-  width: 6px;  
-  height: 6px;  
-  background: white;  
-  border-radius: 50%;  
-  animation: sparkleAnim 2s infinite;  
-}  
-  
-@keyframes sparkleAnim {  
-  0% {opacity:1; transform: scale(1);}  
-  100% {opacity:0; transform: scale(2);}  
-}  
-  
-/* CARDS */  
-.skills, .output-card, .contact {  
-  border-radius: 18px;  
-  padding: 20px;  
-  margin-bottom: 30px;  
-}  
-  
-/* BUTTON */  
-button {  
-  background: linear-gradient(45deg, #fff, #ddd);  
-  color: black;  
-  border: none;  
-  padding: 8px 15px;  
-  border-radius: 8px;  
-}  
-  
-/* FOOTER */  
-footer {  
-  text-align: center;  
-  padding: 10px;  
-}  
-    
- const form = document.querySelector("form");  
-const successMsg = document.getElementById("success-msg");  
-  
-form.addEventListener("submit", async function(e) {  
-  e.preventDefault();  
-  const data = new FormData(form);  
-  
-  const response = await fetch(form.action, {  
-    method: form.method,  
-    body: data,  
-    headers: { 'Accept': 'application/json' }  
-  });  
-  
-  if (response.ok) {  
-    successMsg.style.display = "block";  
-    form.reset();  
-  }  
-});  
- 
-</script>
-  <!-- 💬 CHAT BOTH START -->
 
-<!-- AI BUTTON -->
-<div id="ai-btn" onclick="toggleAI()">💜</div>
-
-<!-- AI BOX -->
-<div id="ai-box">
-  <div id="ai-header">Jessa AI 💬</div>
-  <div id="ai-body"></div>
-  <input id="ai-input" placeholder="Type message..." onkeypress="aiChat(event)">
-</div>
-
-<!-- LIVE CHAT -->
-<div id="live-chat-box">
-  <h4>Live Chat 💬</h4>
-  <div id="chat"></div>
-  <input id="msg" placeholder="Message">
-  <button onclick="sendMsg()">Send</button>
-</div>
-
-<!-- STYLE -->
-<style>
-#ai-btn{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  background:#a855f7;
-  color:white;
-  padding:15px;
-  border-radius:50%;
-  cursor:pointer;
+function toggleChat(id) {
+    let box = document.getElementById(id);
+    let isFlex = box.style.display === "flex";
+    document.querySelectorAll('.chat-box').forEach(b => b.style.display = "none");
+    box.style.display = isFlex ? "none" : "flex";
 }
 
-#ai-box{
-  position:fixed;
-  bottom:80px;
-  right:20px;
-  width:260px;
-  background:white;
-  color:black;
-  border-radius:10px;
-  display:none;
+function aiChat() {
+    let input = document.getElementById("ai-in");
+    let body = document.getElementById("ai-body");
+    let val = input.value.toLowerCase();
+    if(!val) return;
+    body.innerHTML += `<div class="user-msg">${input.value}</div>`;
+    let reply = "I'm Jessa's virtual assistant. 💜";
+    if(val.includes("hi") || val.includes("hello")) reply = "Hello! I can tell you about Jessa's skills!";
+    else if(val.includes("skill")) reply = "Jessa knows HTML, CSS, Figma, and Canva!";
+    setTimeout(() => { body.innerHTML += `<div class="bot-msg">${reply}</div>`; body.scrollTop = body.scrollHeight; }, 600);
+    input.value = ""; body.scrollTop = body.scrollHeight;
 }
 
-#ai-header{
-  background:#a855f7;
-  color:white;
-  padding:10px;
+function createSparkles() {
+  const container = document.getElementById("sparkles-container");
+  for(let j=0; j<15; j++) {
+    let s = document.createElement("div"); s.className = "sparkle";
+    s.style.top = Math.random() * 100 + "%"; s.style.left = Math.random() * 100 + "%";
+    container.appendChild(s);
+  }
 }
+window.onload = () => { type(); createSparkles(); };  
+</script>  
 
-#ai-body{
-  height:150px;
-  overflow:auto;
-  padding:10px;
-}
-
-#ai-input{
-  width:100%;
-  padding:10px;
-}
-
-#live-chat-box{
-  position:fixed;
-  bottom:20px;
-  left:20px;
-  width:250px;
-  background:white;
-  color:black;
-  padding:10px;
-  border-radius:10px;
-}
-
-#chat{
-  height:150px;
-  overflow:auto;
-  border:1px solid #ddd;
-  margin-bottom:5px;
-}
-</style>
-
-<!-- AI SCRIPT -->
-<script>
-function toggleAI(){
-  let box=document.getElementById("ai-box");
-  box.style.display = box.style.display==="block"?"none":"block";
-}
-
-function aiChat(e){
-if(e.key==="Enter"){
-  let input=document.getElementById("ai-input");
-  let chat=document.getElementById("ai-body");
-
-  let msg=input.value.toLowerCase();
-  chat.innerHTML += "<div><b>You:</b> "+msg+"</div>";
-
-  let reply="Thanks for visiting 💜";
-
-  if(msg.includes("hello")) reply="Hi 👋";
-  if(msg.includes("resume")) reply="Check my resume 📄";
-  if(msg.includes("skills")) reply="HTML, CSS, UI/UX ✨";
-
-  setTimeout(()=>{
-    chat.innerHTML += "<div><b>Bot:</b> "+reply+"</div>";
-  },500);
-
-  input.value="";
-}
-}
-</script>
-
-<!-- FIREBASE -->
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-
-const firebaseConfig = {
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_PROJECT_ID"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-window.sendMsg = async function(){
-  let input=document.getElementById("msg");
-  if(input.value==="") return;
-
-  await addDoc(collection(db,"chat"),{
-    text:input.value,
-    time:Date.now()
-  });
-
-  input.value="";
-}
-
-onSnapshot(collection(db,"chat"),(snapshot)=>{
-  let chat=document.getElementById("chat");
-  chat.innerHTML="";
-
-  snapshot.forEach(doc=>{
-    chat.innerHTML += "<div>"+doc.data().text+"</div>";
-  });
-
-</body>
+</body>  
 </html>
-    
-    
