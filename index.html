@@ -36,7 +36,6 @@ header {
   position: sticky; top: 0; backdrop-filter: blur(15px); z-index: 1000; border-bottom: 1px solid var(--glass-border);
 }  
   
-/* Nav links tightly packed as requested */
 nav a { color: #fff; margin: 0 5px; text-decoration: none; font-weight: 600; font-size: 11px; }
 nav a:hover { color: var(--primary); text-shadow: 0 0 10px var(--primary); }  
   
@@ -55,7 +54,6 @@ section:hover { transform: translateY(-5px); border-color: var(--primary); }
 .sparkle { position: absolute; width: 6px; height: 6px; background: white; border-radius: 50%; animation: sparkleAnim 2s infinite; pointer-events: none; }
 @keyframes sparkleAnim { 0% {opacity:1; transform: scale(1);} 100% {opacity:0; transform: scale(2);} }
   
-/* Reduced font size for Welcome Text */
 #welcome-text { font-size: 20px; font-weight: 700; background: linear-gradient(270deg, #ff0000, #ff7f00, #ffff00, #00ff00, #0000ff, #4b0082, #8b00ff); background-size: 400%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: rainbowMove 8s linear infinite; border-right: 3px solid #fff; width: fit-content; margin: 10px auto; white-space: nowrap; overflow: hidden; min-height: 35px; }
 @keyframes rainbowMove { 0% { background-position: 0% 50%; } 100% { background-position: 100% 50%; } }  
 
@@ -66,12 +64,39 @@ section:hover { transform: translateY(-5px); border-color: var(--primary); }
 }  
 .skill:hover { background: var(--primary); box-shadow: 0 0 15px var(--primary); transform: scale(1.1); color: white; }
   
-.photo-gallery, .output-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 15px; }  
-.photo-gallery img, .output-gallery img { width: 100%; height: 180px; border-radius: 15px; object-fit: cover; }  
+.photo-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 15px; }  
+.photo-gallery img { width: 100%; height: 180px; border-radius: 15px; object-fit: cover; }  
+
+.project-container { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+.project-box { 
+  border: 1px solid rgba(168, 85, 247, 0.4); 
+  border-radius: 15px; 
+  padding: 30px 20px; 
+  text-align: center; 
+  background: rgba(255, 255, 255, 0.02);
+  transition: 0.3s;
+}
+.project-box:hover { border-color: var(--primary); background: rgba(168, 85, 247, 0.05); }
+.project-box h4 { margin: 0 0 15px 0; font-size: 18px; display: flex; align-items: center; justify-content: center; gap: 10px; }
+.open-btn { 
+  background: linear-gradient(to right, #a855f7, #ec4899); 
+  color: white; 
+  padding: 8px 30px; 
+  border-radius: 10px; 
+  text-decoration: none; 
+  font-weight: bold; 
+  display: inline-block;
+  font-size: 14px;
+}
   
 .grid-layout { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
 .output-card { background: rgba(255, 255, 255, 0.02); border-radius: 15px; padding: 15px; text-align: center; border: 1px solid var(--glass-border); }  
 .output-card img { width: 100%; border-radius: 10px; margin-bottom: 10px; }  
+.output-card h5 { margin: 5px 0; color: var(--primary); font-size: 12px; opacity: 0.8; }
+
+/* Visual Design Gallery */
+.visual-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px; }
+.visual-gallery img { width: 100%; height: 200px; border-radius: 12px; object-fit: cover; border: 1px solid var(--glass-border); }
   
 .tutorials-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; }
 .tutorials-grid iframe { width: 100%; max-width: 300px; height: 180px; border-radius: 12px; border: none; }  
@@ -85,7 +110,6 @@ section:hover { transform: translateY(-5px); border-color: var(--primary); }
 
 input, textarea { padding: 12px; border-radius: 10px; border: 1px solid var(--glass-border); width: 100%; background: rgba(255,255,255,0.05); color: white; margin-bottom: 10px; box-sizing: border-box; }  
 
-/* CHATS - Icons positioned to the side as requested */
 .floating-chats { position: fixed; bottom: 20px; right: 10px; display: flex; flex-direction: column; gap: 10px; z-index: 2000; }
 .chat-icon { width: 55px; height: 55px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.5); font-size: 24px; transition: 0.3s; }
 #ai-btn { background: var(--primary); color: white; }
@@ -157,17 +181,36 @@ footer { text-align: center; padding: 25px; background: rgba(17, 24, 39, 0.7); b
   <section id="certificates">  
     <h3>My Certificates</h3>  
     <div class="grid-layout">
-      <div class="output-card"><img src="Js.png"><h4>HTML & CSS Training</h4></div>  
-      <div class="output-card"><img src="Ps.png"><h4>UI/UX Design</h4></div>  
-      <div class="output-card"><img src="Ln.png"><h4>IT Support Cert</h4></div>  
+      <div class="output-card"><img src="Js.png"><h4>HTML & CSS Training</h4><h5>Certificates of seminar</h5></div>  
+      <div class="output-card"><img src="Ps.png"><h4>UI/UX Design</h4><h5>Certificates of seminar</h5></div>  
+      <div class="output-card"><img src="Ln.png"><h4>IT Support Cert</h4><h5>Certificates of seminar</h5></div> 
+      <div class="output-card"><img src="Cisco.jpeg"><h4>My Certificates lf Cisco</h4><h5>Certificates of Cisco</h5></div> 
+    </div>
+
+    <h3 style="margin-top: 40px;">Visual Design</h3>
+    <div class="visual-gallery">
+      <img src="tshirt.jpg" alt="Design 1">
+      <img src="board.jpg" alt="Design 2">
+      <img src="banner.jpg" alt="Design 3">
+      <img src="fruits.jpg" alt="Design 4">
     </div>
   </section>  
 
   <section id="outputs">  
-    <h3>My Outputs</h3>  
-    <div class="output-gallery">  
-      <img src="lala.jpg"><img 
-        src="tshirt.jpg"><img src="beb.jpg"><img
+    <h3>Project Highlights</h3>  
+    <div class="project-container">
+      <div class="project-box">
+        <h4>🎨 Canva Portfolio</h4>
+        <a href="https://www.canva.com" target="_blank" class="open-btn">Open</a>
+      </div>
+      <div class="project-box">
+        <h4>🛒 Figma Shop</h4>
+        <a href="#" target="_blank" class="open-btn">Open</a>
+      </div>
+      <div class="project-box">
+        <h4>🌐 Figma Personal Site</h4>
+        <a href="#" target="_blank" class="open-btn">Open</a>
+      </div>
     </div>  
   </section>  
 
@@ -176,7 +219,7 @@ footer { text-align: center; padding: 25px; background: rgba(17, 24, 39, 0.7); b
     <div class="tutorials-grid">
       <iframe src="https://www.youtube.com/embed/9xmt7Kd-zTg"></iframe>  
       <iframe src="https://www.youtube.com/embed/HZuk6Wkx_Eg"></iframe> 
-      <iframe src="https://youtu.be/61mkx_OV61s?si=oyz2TjCFga-TqW-G"></iframe>
+      <iframe src="https://youtu.be/61mkx_OV61s?si=ptPpMx0FAQUN_Kiu"></iframe>
      </div>
   </section>  
 
